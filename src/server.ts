@@ -15,7 +15,7 @@ app.get('/', (req: Request, res: Response) => {
     res.send('Hello, MetaRooooon 2!');
 });
 
-
+export default app;
 app.listen(port, () => {
 
     console.log(`🚀 Server is running on http://localhost:${port}`);

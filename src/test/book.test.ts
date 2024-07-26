@@ -1,23 +1,11 @@
 import request from 'supertest';
-import express from 'express';
-import bodyParser from 'body-parser';
+import app from '../server';
 
-const app = express();
-app.use(bodyParser.json());
-
-// Example route definitions
-app.get('/api/v1/books', (req, res) => res.status(200).json([{ id: 1, title: '1984' }]));
-app.get('/api/v1/books/:id', (req, res) => res.status(200).json({ id: req.params.id, title: '1984' }));
-app.post('/api/v1/books', (req, res) => res.status(201).json(req.body));
-app.put('/api/v1/books/:id', (req, res) => res.status(200).json({ ...req.body, id: req.params.id }));
-app.delete('/api/v1/books/:id', (req, res) => res.status(204).send());
-
-// Example tests
 describe('Books API', () => {
     it('should fetch all books', async () => {
         const response = await request(app).get('/api/v1/books');
         expect(response.status).toBe(200);
-        expect(response.body.length).toBe(1);
+        expect(response.body.length).toBe(2);
     });
 
     it('should fetch a single book', async () => {
